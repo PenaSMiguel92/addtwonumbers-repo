@@ -14,4 +14,15 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
+
+    @Override 
+    public String toString() {
+        String val = "";
+        ListNode nextNode = this;
+        while (nextNode != null) {
+            val += nextNode.val;
+            nextNode = nextNode.next;
+        }
+        return val;
+    }
 }
