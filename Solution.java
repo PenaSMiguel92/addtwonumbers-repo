@@ -3,30 +3,21 @@ public class Solution {
         ListNode answer = new ListNode();
         ListNode answerPointer = answer;
         int carry = 0;
-        while (l1 != null || l2 != null) {
-            int sum = carry;
-            if (l1 != null) {
-                sum += l1.val;
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                sum += l2.val;
-                l2 = l2.next;
-            }
+        while (l1 != null || l2 != null || carry != 0) {
+            int digit1 = l1 != null ? l1.val : 0;
+            int digit2 = l2 != null ? l2.val : 0;
+            int sum = carry + digit1 + digit2;
 
             carry = sum > 9 ? 1 : 0;
 
-            answerPointer.val = sum % 10;
-            if (l1 != null || l2 != null) {
-                answerPointer.next = new ListNode();
-                answerPointer = answerPointer.next;
-            }
-        }
-        if (carry != 0) {
-            answerPointer.next = new ListNode();
+            answerPointer.next = new ListNode(sum % 10);
             answerPointer = answerPointer.next;
-            answerPointer.val = carry;
+
+            l1 = (l1 != null) ? l1.next : null;
+            l2 = (l2 != null) ? l2.next : null;
+
         }
-        return answer;
+        System.gc();
+        return answer.next;
     }
 }
