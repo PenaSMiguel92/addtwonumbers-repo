@@ -17,10 +17,14 @@ public class Solution {
             carry = sum > 9 ? 1 : 0;
 
             answerPointer.val = sum % 10;
-            answerPointer.next = new ListNode();
-            answerPointer = answerPointer.next;
+            if (l1 != null || l2 != null) {
+                answerPointer.next = new ListNode();
+                answerPointer = answerPointer.next;
+            }
         }
         if (carry != 0) {
+            answerPointer.next = new ListNode();
+            answerPointer = answerPointer.next;
             answerPointer.val = carry;
         }
         return answer;
